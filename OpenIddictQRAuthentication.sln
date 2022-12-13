@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balosar.Client", "src\Balosar.Client\Balosar.Client.csproj", "{203D8D78-6453-4A9A-8523-761C5899790E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balosar.Server", "src\Balosar.Server\Balosar.Server.csproj", "{E491AA48-2474-4DA5-A0A1-6F45D76EA162}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balosar.Shared", "src\Balosar.Shared\Balosar.Shared.csproj", "{959DF589-0990-42A5-8D8D-7F328FC46874}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{203D8D78-6453-4A9A-8523-761C5899790E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203D8D78-6453-4A9A-8523-761C5899790E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203D8D78-6453-4A9A-8523-761C5899790E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203D8D78-6453-4A9A-8523-761C5899790E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E491AA48-2474-4DA5-A0A1-6F45D76EA162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E491AA48-2474-4DA5-A0A1-6F45D76EA162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E491AA48-2474-4DA5-A0A1-6F45D76EA162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E491AA48-2474-4DA5-A0A1-6F45D76EA162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{959DF589-0990-42A5-8D8D-7F328FC46874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{959DF589-0990-42A5-8D8D-7F328FC46874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{959DF589-0990-42A5-8D8D-7F328FC46874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{959DF589-0990-42A5-8D8D-7F328FC46874}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

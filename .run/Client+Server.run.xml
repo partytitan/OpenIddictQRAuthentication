@@ -1,0 +1,7 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Client+Server" type="CompoundRunConfigurationType">
+    <toRun name="Balosar.Server" type="LaunchSettings" />
+    <toRun name="Balosar.Client" type="DotNetProject" />
+    <method v="2" />
+  </configuration>
+</component>
