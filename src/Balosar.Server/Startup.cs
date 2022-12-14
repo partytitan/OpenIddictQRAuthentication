@@ -2,6 +2,7 @@ using Balosar.Server.Data;
 using Balosar.Server.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -104,6 +105,11 @@ public class Startup
 
         services.AddControllersWithViews();
         services.AddRazorPages();
+        services.AddCookiePolicy(options =>
+        {
+            options.CheckConsentNeeded = _ => true;
+            options.MinimumSameSitePolicy = SameSiteMode.None;
+        });
 
         // Register the worker responsible for seeding the database.
         // Note: in a real world application, this step should be part of a setup script.
@@ -126,6 +132,7 @@ public class Startup
         app.UseHttpsRedirection();
         app.UseBlazorFrameworkFiles();
         app.UseStaticFiles();
+        app.UseCookiePolicy();
 
         app.UseRouting();
 
