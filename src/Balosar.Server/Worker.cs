@@ -59,7 +59,28 @@ public class Worker : IHostedService
                 }
             });
         }
-
+        
+        if (await manager.FindByClientIdAsync("balosar-internal-device-client") is null)
+        {
+            await manager.CreateAsync(new OpenIddictApplicationDescriptor
+            {
+                ClientId = "balosar-internal-device-client",
+                ClientSecret = "8a177cb2-0942-458a-92bf-360bfd6d5f2a",
+                ConsentType = ConsentTypes.Implicit,
+                DisplayName = "Balosar internal device client",
+                Type = ClientTypes.Confidential,
+                Permissions =
+                {
+                    Permissions.GrantTypes.DeviceCode,
+                    Permissions.GrantTypes.RefreshToken,
+                    Permissions.Endpoints.Device,
+                    Permissions.Endpoints.Token,
+                    Permissions.Scopes.Email,
+                    Permissions.Scopes.Profile,
+                    Permissions.Scopes.Roles,
+                }
+            });
+        }
     }
 
     public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;

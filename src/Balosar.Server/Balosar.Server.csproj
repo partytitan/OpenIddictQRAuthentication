@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.0" />
@@ -28,6 +29,11 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Shared\_LoginPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\qrcode\qrcode.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_JsFileModuleStaticWebAsset Include="wwwroot\js\QRAuthentication.js" />
   </ItemGroup>
 
 </Project>

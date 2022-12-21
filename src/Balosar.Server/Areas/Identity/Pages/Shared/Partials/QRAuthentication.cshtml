@@ -1,0 +1,23 @@
+﻿@model Balosar.Server.ViewModels.QRAuthentication.DoQRLoginViewModel
+
+<div id="qrCodeWrapper" class="d-none">
+    <p class="fs-base">Scan the QR code on an authenticated device to sign in.</p>
+    <div class="d-flex justify-content-center my-4">
+        <div class="text-center">
+            <div id="qrCode" class="p-3 rounded bg-white"></div>
+            <p id="userCode" class="h2 mt-2"></p>
+        </div>
+    </div>
+</div>
+<div id="authAborted" class="d-none">
+    <div class="alert alert-danger d-flex flex-center flex-column p-5 my-4">
+        <div id="abortMessage" class="mb-9 text-dark">Authorization rejected or expired</div>
+        <div class="d-flex flex-center flex-wrap">
+            <button onclick="retryDeviceAuth()" class="btn btn-outline btn-outline-danger btn-active-danger">Reset</button>
+        </div>
+    </div>
+</div>
+<form id="deviceAuthForm" asp-controller="QRAuthentication" asp-action="DoQRAuthentication" method="post" class="d-none">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <input id="deviceCode" type="hidden" asp-for="DeviceCode" />
+</form>

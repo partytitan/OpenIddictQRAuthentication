@@ -1,4 +1,5 @@
 ﻿@page
+@using Balosar.Server.ViewModels.QRAuthentication
 @model LoginModel
 
 @{
@@ -56,7 +57,7 @@
                     <div>
                         <p>
                             There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
+                                about setting up this ASP.NET application to support logging in via external services</a>.
                         </p>
                     </div>
                 }
@@ -75,9 +76,17 @@
                 }
             }
         </section>
+        <section>
+            <h3>QR authentication.</h3>
+            <hr>    
+            @await Html.PartialAsync("Shared/Partials/QRAuthentication", new DoQRLoginViewModel() { ReturnUrl = Model.ReturnUrl })
+        </section>
     </div>
 </div>
 
 @section Scripts {
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="~/js/QRAuthentication.js"></script>
     <partial name="_ValidationScriptsPartial" />
 }

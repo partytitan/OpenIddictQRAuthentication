@@ -1,4 +1,6 @@
+using Balosar.Server.Cache;
 using Balosar.Server.Data;
+using Balosar.Server.Hubs;
 using Balosar.Server.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -71,7 +73,9 @@ public class Startup
                 options.SetAuthorizationEndpointUris("/connect/authorize")
                        .SetLogoutEndpointUris("/connect/logout")
                        .SetTokenEndpointUris("/connect/token")
-                       .SetUserinfoEndpointUris("/connect/userinfo");
+                       .SetUserinfoEndpointUris("/connect/userinfo")
+                       .SetDeviceEndpointUris("/connect/device")
+                       .SetVerificationEndpointUris("/connect/verify");
 
                 // Mark the "email", "profile" and "roles" scopes as supported scopes.
                 options.RegisterScopes(Scopes.Email, Scopes.Profile, Scopes.Roles);
@@ -79,6 +83,7 @@ public class Startup
                 // Note: the sample uses the code and refresh token flows but you can enable
                 // the other flows if you need to support implicit, password or client credentials.
                 options.AllowAuthorizationCodeFlow()
+                       .AllowDeviceCodeFlow()
                        .AllowRefreshTokenFlow();
 
                 // Register the signing and encryption credentials.
@@ -90,7 +95,9 @@ public class Startup
                        .EnableAuthorizationEndpointPassthrough()
                        .EnableLogoutEndpointPassthrough()
                        .EnableStatusCodePagesIntegration()
-                       .EnableTokenEndpointPassthrough();
+                       .EnableTokenEndpointPassthrough()
+                       .EnableVerificationEndpointPassthrough()
+                       .EnableStatusCodePagesIntegration();
             })
 
             // Register the OpenIddict validation components.
@@ -111,6 +118,11 @@ public class Startup
             options.MinimumSameSitePolicy = SameSiteMode.None;
         });
 
+        services.AddHttpClient();
+        services.AddSingleton<QRAuthenticationCache>();
+        services.AddSignalR();
+
+        
         // Register the worker responsible for seeding the database.
         // Note: in a real world application, this step should be part of a setup script.
         services.AddHostedService<Worker>();
@@ -130,7 +142,6 @@ public class Startup
         }
 
         app.UseHttpsRedirection();
-        app.UseBlazorFrameworkFiles();
         app.UseStaticFiles();
         app.UseCookiePolicy();
 
@@ -141,6 +152,7 @@ public class Startup
 
         app.UseEndpoints(options =>
         {
+            options.MapHub<QRAuthenticationHub>("/Hub/QRAuthentication");
             options.MapRazorPages();
             options.MapControllers();
             options.MapFallbackToFile("index.html");
